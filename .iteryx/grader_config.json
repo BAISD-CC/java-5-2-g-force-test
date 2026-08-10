@@ -1,0 +1,194 @@
+{
+  "schema": "iteryx/java-grader/v1",
+
+  "assignmentName": "Ch. 5 Challenge 2",
+
+  "project": {
+    "workingDirectory": ".",
+    "mainFile": "src/GForceTest.java",
+    "mainClass": "GForceTest",
+    "outputDirectory": ".iteryx/out",
+    "compileCommand": [
+      "javac",
+      "-d",
+      ".iteryx/out",
+      "src/GForceTest.java"
+    ],
+    "runCommand": [
+      "java",
+      "-cp",
+      ".iteryx/out",
+      "GForceTest"
+    ]
+  },
+
+  "settings": {
+    "compileTimeoutSeconds": 30,
+    "runTimeoutSeconds": 10,
+    "defaultCaseSensitive": false,
+    "defaultNormalizeWhitespace": true
+  },
+
+  "helpTopics": {
+    "scannerInput": {
+      "title": "Reading Input with Scanner",
+      "whereToLook": [
+        "Make sure you create a Scanner object connected to System.in.",
+        "Use nextDouble() to read each score as a double.",
+        "Read the five scores in the exact order the prompts are displayed: first, second, third, fourth, fifth."
+      ]
+    },
+    "methods": {
+      "title": "Writing and Calling Methods",
+      "whereToLook": [
+        "calcAverage should accept all five scores as parameters and return their average as a double.",
+        "determineGrade should accept a single score as a parameter and return a String grade.",
+        "Call determineGrade separately for each of the five scores, and again for the average score."
+      ]
+    },
+    "gradingLogic": {
+      "title": "Determining the Grade",
+      "whereToLook": [
+        "Review the score ranges in the README table for Fail, Pass, Excel, and Warning.",
+        "Pay close attention to the boundary values (3.0/3.1, 6.0/6.1, 9.0) to make sure each lands in the correct range.",
+        "A score over 9.0 should always return \"Warning\", even when checking the average score."
+      ]
+    },
+    "closingProgram": {
+      "title": "Closing the Program",
+      "whereToLook": [
+        "After displaying the results, call System.exit(0) as the last statement in main."
+      ]
+    }
+  },
+
+  "sourceChecks": [
+    {
+      "name": "Uses Scanner",
+      "type": "regex",
+      "pattern": "\\bScanner\\b",
+      "points": 2,
+      "message": "This challenge requires you to use a Scanner to read the user's five scores."
+    },
+    {
+      "name": "Uses calcAverage method",
+      "type": "regex",
+      "pattern": "calcAverage\\s*\\(",
+      "points": 1,
+      "message": "You must write and call a method named calcAverage to calculate the average of the five scores."
+    },
+    {
+      "name": "Uses determineGrade method",
+      "type": "regex",
+      "pattern": "determineGrade\\s*\\(",
+      "points": 1,
+      "message": "You must write and call a method named determineGrade to look up the grade for a score."
+    },
+    {
+      "name": "Closes the program",
+      "type": "regex",
+      "pattern": "System\\.exit\\s*\\(",
+      "points": 1,
+      "message": "Call System.exit(0) as the last statement in main to close the program after displaying the results."
+    }
+  ],
+
+  "tests": [
+    {
+      "name": "All Excel scores",
+      "points": 4,
+      "input": "7.1\n7.3\n7.2\n8.1\n8.4\n",
+      "comparison": "exact",
+      "expectedOutput": "Enter the first score: \nEnter the second score: \nEnter the third score: \nEnter the fourth score: \nEnter the fifth score: \nHere are the grades and the average:\nScore 1: Excel\nScore 2: Excel\nScore 3: Excel\nScore 4: Excel\nScore 5: Excel\nAverage score: 7.62\nAverage Grade: Excel\n",
+      "possibleErrors": [
+        {
+          "type": "no_output",
+          "message": "Your program produced no output. Make sure you are prompting for and reading all five scores with Scanner, then printing the results."
+        },
+        {
+          "type": "expected_missing",
+          "badText": "Excel",
+          "message": "Check that your determineGrade method returns \"Excel\" for scores between 6.1 and 9.0, inclusive."
+        },
+        {
+          "type": "runtime_error",
+          "message": "Your program crashed. Check that calcAverage and determineGrade both return a value in every possible case."
+        }
+      ]
+    },
+    {
+      "name": "Mixed grades",
+      "points": 4,
+      "input": "2.2\n4.5\n7.0\n9.5\n6.0\n",
+      "comparison": "exact",
+      "expectedOutput": "Enter the first score: \nEnter the second score: \nEnter the third score: \nEnter the fourth score: \nEnter the fifth score: \nHere are the grades and the average:\nScore 1: Fail\nScore 2: Pass\nScore 3: Excel\nScore 4: Warning\nScore 5: Pass\nAverage score: 5.84\nAverage Grade: Pass\n",
+      "possibleErrors": [
+        {
+          "type": "expected_missing",
+          "message": "Check that your determineGrade method correctly distinguishes between all four grades (Fail, Pass, Excel, Warning), and that Warning triggers for any score over 9.0."
+        },
+        {
+          "type": "hardcoded_output_hint",
+          "badText": "7.62",
+          "message": "Your output still contains 7.62, the average from a different set of scores. Make sure you are calculating the average from the scores entered for this run rather than printing a fixed value."
+        }
+      ]
+    },
+    {
+      "name": "All Fail scores",
+      "points": 4,
+      "input": "2.2\n2.4\n2.6\n2.2\n2.8\n",
+      "comparison": "exact",
+      "expectedOutput": "Enter the first score: \nEnter the second score: \nEnter the third score: \nEnter the fourth score: \nEnter the fifth score: \nHere are the grades and the average:\nScore 1: Fail\nScore 2: Fail\nScore 3: Fail\nScore 4: Fail\nScore 5: Fail\nAverage score: 2.44\nAverage Grade: Fail\n",
+      "possibleErrors": [
+        {
+          "type": "expected_missing",
+          "badText": "Fail",
+          "message": "Check that your determineGrade method returns \"Fail\" for scores between 1.0 and 3.0, inclusive."
+        },
+        {
+          "type": "hardcoded_output_hint",
+          "badText": "7.62",
+          "message": "Your output still contains 7.62, the average from a different set of scores. Make sure you are calculating the average from the scores entered for this run rather than printing a fixed value."
+        }
+      ]
+    },
+    {
+      "name": "All Warning scores",
+      "points": 4,
+      "input": "9.9\n9.4\n9.2\n9.4\n9.9\n",
+      "comparison": "exact",
+      "expectedOutput": "Enter the first score: \nEnter the second score: \nEnter the third score: \nEnter the fourth score: \nEnter the fifth score: \nHere are the grades and the average:\nScore 1: Warning\nScore 2: Warning\nScore 3: Warning\nScore 4: Warning\nScore 5: Warning\nAverage score: 9.56\nAverage Grade: Warning\n",
+      "possibleErrors": [
+        {
+          "type": "expected_missing",
+          "badText": "Warning",
+          "message": "Check that your determineGrade method returns \"Warning\" for any score over 9.0, and that this also applies when checking the average score."
+        },
+        {
+          "type": "hardcoded_output_hint",
+          "badText": "7.62",
+          "message": "Your output still contains 7.62, the average from a different set of scores. Make sure you are calculating the average from the scores entered for this run rather than printing a fixed value."
+        }
+      ]
+    },
+    {
+      "name": "Boundary values",
+      "points": 4,
+      "input": "3.0\n3.1\n6.0\n6.1\n9.0\n",
+      "comparison": "exact",
+      "expectedOutput": "Enter the first score: \nEnter the second score: \nEnter the third score: \nEnter the fourth score: \nEnter the fifth score: \nHere are the grades and the average:\nScore 1: Fail\nScore 2: Pass\nScore 3: Pass\nScore 4: Excel\nScore 5: Excel\nAverage score: 5.44\nAverage Grade: Pass\n",
+      "possibleErrors": [
+        {
+          "type": "expected_missing",
+          "message": "Check the boundary values in your conditional logic (3.0, 3.1, 6.0, 6.1, and 9.0) to make sure each one falls into the correct grade range."
+        },
+        {
+          "type": "hardcoded_output_hint",
+          "badText": "7.62",
+          "message": "Your output still contains 7.62, the average from a different set of scores. Make sure you are calculating the average from the scores entered for this run rather than printing a fixed value."
+        }
+      ]
+    }
+  ]
+}

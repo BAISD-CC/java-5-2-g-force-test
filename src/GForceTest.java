@@ -11,18 +11,23 @@ public class GForceTest {
     @param score5 The fifth score.
     @return The average of the five scores.
     */
+    public static double calcAverage(double score1, double score2, double score3, double score4, double score5) {
+        // Calculate and return the average of the five scores here
 
+    }
 
-  /**
+    /**
     The determineGrade method determines the grade
     for a numeric score.
     @param score The numeric score.
     @return The grade.
     */
+    public static String determineGrade(double score) {
+        // String to hold the grade
 
-      // String hold the grade
+        // Determine the grade based on score, then return it
 
-      // Determine and the grade based on score.
+    }
 
     public static void main(String[] args) {
         // Variables for scores and average.

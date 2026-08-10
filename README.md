@@ -1,33 +1,76 @@
-We need to figure out how many G's our astronauts can handle and apply a grade of, "Excel, Pass, or Fail" depending on what those scores are when we put them in the centrifuge. Write a program that asks the user to enter the G's applied when the astronaut candidate passes out. The program should display a grade for each test. It should then get the average score and display it in G's and give a total grade.
+# Ch. 5 Challenge 2: G-Force Test
 
-If somehow, the astronaut makes it past 9.0 G's, the centrifuge should shut down automatically as it is dangerous for the astronaut to endure more than 9.0 G's and you should output a warning notification so that our staff can correct the problem.
+We need to figure out how many G's our astronaut candidates can handle and apply a grade of "Excel", "Pass", "Fail", or "Warning" depending on their results in the centrifuge.
 
-Use the following methods in the program.
-- calcAverage - This method should accept the five scores as arguments and return the average of the scores.
-- determineGrade - This method should accept a score as an argument and return a grade for the score based on the following score:
+Write a program that asks the user to enter 5 G-force scores, one at a time: the G's applied to an astronaut candidate at the moment they pass out, repeated for 5 separate test runs. The program should display a grade for each of the 5 scores. It should then calculate the average score, and display it in G's along with an overall grade.
 
-| Score    | Grade    |
-|--------- |----------|
-| Over 9.1 | Warning  |
-| 6.1-9.0  | Excel    |
-| 3.1-6.0  | Pass     |
-| 1.0-3.0  | Fail     |
+If a candidate is subjected to more than 9.0 G's, that is dangerous, so the program should display a "Warning" grade for that score so staff know to correct the problem.
 
+## What You Will Use
 
-Things you will need to pass the tests:
+This challenge builds on what you have learned about:
 
-> Input 1 - "Enter the first score: "
-> Input 2 - "Enter the second score: "
-> Input 3 - "Enter the third score: "
-> Input 4 - "Enter the fourth score: "
-> Input 5 - "Enter the fifth score: "
-> Output 1 - "Here are the grades and the average:
->             Score 1: `[grade1]`
->             Score 2: `[grade2]`
->             Score 3: `[grade3]`
->             Score 4: `[grade4]`
->             Score 5: `[grade5]`
->             Average score: `[averageScore]`
->             Average Grade: `[averageGrade]`
+- **Scanner** — to read the 5 scores entered by the user
+- **Methods** — you must write and call two methods, described below
+- **Conditionals** — to determine the correct grade for a score
+- **`System.exit(0)`** — call this as the last statement in `main` to close the program after the results are displayed
 
-All calculations should round to the second decimal.
+## Methods
+
+Write and use the following two methods:
+
+- `calcAverage` — accepts the five scores (as `double` values) as arguments and returns their average (as a `double`).
+- `determineGrade` — accepts a single score (as a `double`) as an argument and returns the grade for that score (as a `String`), based on the table below.
+
+| Score Range | Grade   |
+|-------------|---------|
+| Over 9.0    | Warning |
+| 6.1 - 9.0   | Excel   |
+| 3.1 - 6.0   | Pass    |
+| 1.0 - 3.0   | Fail    |
+
+Call `determineGrade` on each of the 5 individual scores, and again on the average score, to get the overall grade.
+
+## Input
+
+Prompt for the 5 scores in this order:
+
+```
+Enter the first score: 
+Enter the second score: 
+Enter the third score: 
+Enter the fourth score: 
+Enter the fifth score: 
+```
+
+## Output
+
+After all 5 scores have been entered, display the grades and the average using this exact format:
+
+```
+Here are the grades and the average:
+Score 1: [grade1]
+Score 2: [grade2]
+Score 3: [grade3]
+Score 4: [grade4]
+Score 5: [grade5]
+Average score: [averageScore]
+Average Grade: [averageGrade]
+```
+
+The average score must be rounded to 2 decimal places (for example, `7.62`).
+
+### Example
+
+If the user enters `7.1`, `7.3`, `7.2`, `8.1`, and `8.4`, the output should be:
+
+```
+Here are the grades and the average:
+Score 1: Excel
+Score 2: Excel
+Score 3: Excel
+Score 4: Excel
+Score 5: Excel
+Average score: 7.62
+Average Grade: Excel
+```
