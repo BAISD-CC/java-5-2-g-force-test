@@ -1,8 +1,6 @@
 {
   "schema": "iteryx/java-grader/v1",
-
   "assignmentName": "Ch. 5 Challenge 2",
-
   "project": {
     "workingDirectory": ".",
     "mainFile": "src/GForceTest.java",
@@ -21,14 +19,12 @@
       "GForceTest"
     ]
   },
-
   "settings": {
     "compileTimeoutSeconds": 30,
     "runTimeoutSeconds": 10,
     "defaultCaseSensitive": false,
     "defaultNormalizeWhitespace": true
   },
-
   "helpTopics": {
     "scannerInput": {
       "title": "Reading Input with Scanner",
@@ -61,14 +57,13 @@
       ]
     }
   },
-
   "sourceChecks": [
     {
       "name": "Uses Scanner",
       "type": "regex",
-      "pattern": "\\bScanner\\b",
+      "pattern": "new\\s+Scanner\\s*\\(\\s*System\\.in\\s*\\)",
       "points": 2,
-      "message": "This challenge requires you to use a Scanner to read the user's five scores."
+      "message": "This challenge requires you to create a Scanner with System.in to read the user's five scores."
     },
     {
       "name": "Uses calcAverage method",
@@ -92,7 +87,6 @@
       "message": "Call System.exit(0) as the last statement in main to close the program after displaying the results."
     }
   ],
-
   "tests": [
     {
       "name": "All Excel scores",
