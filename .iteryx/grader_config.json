@@ -26,161 +26,231 @@
     "defaultNormalizeWhitespace": true
   },
   "helpTopics": {
-    "scannerInput": {
-      "title": "Reading Input with Scanner",
+    "todo1": {
+      "title": "TODO 1: calcAverage",
       "whereToLook": [
-        "Make sure you create a Scanner object connected to System.in.",
-        "Use nextDouble() to read each score as a double.",
-        "Read the five scores in the exact order the prompts are displayed: first, second, third, fourth, fifth."
+        "The @return line gives the return type, and each @param line gives one parameter. calcAverage has five double parameters, each with its own type.",
+        "Day 2 notes, R1 (Sending the value back): a value-returning method ends with a return statement.",
+        "Day 2 notes, R2 (Using a return value): sum stores its result in a local variable, then returns it. You can also return the expression directly."
       ]
     },
-    "methods": {
-      "title": "Writing and Calling Methods",
+    "todo2": {
+      "title": "TODO 2: determineGrade",
       "whereToLook": [
-        "calcAverage should accept all five scores as parameters and return their average as a double.",
-        "determineGrade should accept a single score as a parameter and return a String grade.",
-        "Call determineGrade separately for each of the five scores, and again for the average score."
+        "Day 2 notes, S1 (Returning a String): a method can send back a String the same way it sends back a number.",
+        "Check the highest range first with an if/else if chain, and use else for Fail.",
+        "Check the boundaries: 3.0 is Fail, 6.0 is Pass, 9.0 is Excel. Each range starts just above the number, so the checks use >, not >=."
       ]
     },
-    "gradingLogic": {
-      "title": "Determining the Grade",
+    "todo3": {
+      "title": "TODO 3: isDangerous",
       "whereToLook": [
-        "Review the score ranges in the README table for Fail, Pass, Excel, and Warning.",
-        "Pay close attention to the boundary values (3.0/3.1, 6.0/6.1, 9.0) to make sure each lands in the correct range.",
-        "A score over 9.0 should always return \"Warning\", even when checking the average score."
-      ]
-    },
-    "closingProgram": {
-      "title": "Closing the Program",
-      "whereToLook": [
-        "After displaying the results, call System.exit(0) as the last statement in main."
+        "Day 2 notes, B1 (A boolean return as a condition): isSafeAltitude returns a comparison, and main uses the call as an if condition.",
+        "A comparison like score > 9.0 is already true or false, so it can be returned directly.",
+        "9.0 is not dangerous. Only scores over 9.0 are."
       ]
     }
   },
   "sourceChecks": [
     {
-      "name": "Uses Scanner",
+      "name": "TODO 1: calcAverage header",
       "type": "regex",
-      "pattern": "new\\s+Scanner\\s*\\(\\s*System\\.in\\s*\\)",
+      "pattern": "\\bdouble\\s+calcAverage\\s*\\(\\s*double\\s+\\w+\\s*(,\\s*double\\s+\\w+\\s*){4}\\)",
       "points": 2,
-      "message": "This challenge requires you to create a Scanner with System.in to read the user's five scores."
+      "message": "Write a method named calcAverage that has five double parameters and returns a double.",
+      "helpTopic": "todo1"
     },
     {
-      "name": "Uses calcAverage method",
+      "name": "TODO 2: determineGrade header",
       "type": "regex",
-      "pattern": "calcAverage\\s*\\(",
-      "points": 1,
-      "message": "You must write and call a method named calcAverage to calculate the average of the five scores."
+      "pattern": "\\bString\\s+determineGrade\\s*\\(\\s*double\\s+\\w+\\s*\\)",
+      "points": 2,
+      "message": "Write a method named determineGrade that has one double parameter and returns a String.",
+      "helpTopic": "todo2"
     },
     {
-      "name": "Uses determineGrade method",
+      "name": "TODO 3: isDangerous header",
       "type": "regex",
-      "pattern": "determineGrade\\s*\\(",
-      "points": 1,
-      "message": "You must write and call a method named determineGrade to look up the grade for a score."
-    },
-    {
-      "name": "Closes the program",
-      "type": "regex",
-      "pattern": "System\\.exit\\s*\\(",
-      "points": 1,
-      "message": "Call System.exit(0) as the last statement in main to close the program after displaying the results."
+      "pattern": "\\bboolean\\s+isDangerous\\s*\\(\\s*double\\s+\\w+\\s*\\)",
+      "points": 2,
+      "message": "Write a method named isDangerous that has one double parameter and returns a boolean.",
+      "helpTopic": "todo3"
     }
   ],
   "tests": [
     {
-      "name": "All Excel scores",
-      "points": 4,
+      "name": "TODO 1: Average for 7.1, 7.3, 7.2, 8.1, 8.4",
       "input": "7.1\n7.3\n7.2\n8.1\n8.4\n",
-      "comparison": "exact",
-      "expectedOutput": "Enter the first score: \nEnter the second score: \nEnter the third score: \nEnter the fourth score: \nEnter the fifth score: \nHere are the grades and the average:\nScore 1: Excel\nScore 2: Excel\nScore 3: Excel\nScore 4: Excel\nScore 5: Excel\nAverage score: 7.62\nAverage Grade: Excel\n",
+      "expectedOutput": "Average score: 7.62",
+      "comparison": "included",
+      "points": 2,
+      "message": "The average of 7.1, 7.3, 7.2, 8.1, and 8.4 is 7.62.",
+      "helpTopic": "todo1",
       "possibleErrors": [
         {
-          "type": "no_output",
-          "message": "Your program produced no output. Make sure you are prompting for and reading all five scores with Scanner, then printing the results."
-        },
-        {
           "type": "expected_missing",
-          "badText": "Excel",
-          "message": "Check that your determineGrade method returns \"Excel\" for scores between 6.1 and 9.0, inclusive."
+          "message": "Check that calcAverage adds all five parameters, divides by 5, and returns the result, and that the TODO 1 call block in main is uncommented."
         },
         {
           "type": "runtime_error",
-          "message": "Your program crashed. Check that calcAverage and determineGrade both return a value in every possible case."
+          "message": "Your program crashed while running. Read the error output below for the line number."
         }
       ]
     },
     {
-      "name": "Mixed grades",
-      "points": 4,
+      "name": "TODO 1: Average for 2.2, 4.5, 7.0, 9.5, 6.0",
       "input": "2.2\n4.5\n7.0\n9.5\n6.0\n",
-      "comparison": "exact",
-      "expectedOutput": "Enter the first score: \nEnter the second score: \nEnter the third score: \nEnter the fourth score: \nEnter the fifth score: \nHere are the grades and the average:\nScore 1: Fail\nScore 2: Pass\nScore 3: Excel\nScore 4: Warning\nScore 5: Pass\nAverage score: 5.84\nAverage Grade: Pass\n",
+      "expectedOutput": "Average score: 5.84",
+      "comparison": "included",
+      "points": 2,
+      "message": "The average of 2.2, 4.5, 7.0, 9.5, and 6.0 is 5.84.",
+      "helpTopic": "todo1",
       "possibleErrors": [
         {
-          "type": "expected_missing",
-          "message": "Check that your determineGrade method correctly distinguishes between all four grades (Fail, Pass, Excel, Warning), and that Warning triggers for any score over 9.0."
+          "type": "hardcoded_output_hint",
+          "badText": "average score: 7.62",
+          "message": "Your output still shows 7.62, the average from the first test. Calculate the average from calcAverage's parameters, not from typed-in numbers."
         },
         {
-          "type": "hardcoded_output_hint",
-          "badText": "7.62",
-          "message": "Your output still contains 7.62, the average from a different set of scores. Make sure you are calculating the average from the scores entered for this run rather than printing a fixed value."
+          "type": "expected_missing",
+          "message": "Check that calcAverage adds all five parameters and divides by 5."
         }
       ]
     },
     {
-      "name": "All Fail scores",
-      "points": 4,
-      "input": "2.2\n2.4\n2.6\n2.2\n2.8\n",
-      "comparison": "exact",
-      "expectedOutput": "Enter the first score: \nEnter the second score: \nEnter the third score: \nEnter the fourth score: \nEnter the fifth score: \nHere are the grades and the average:\nScore 1: Fail\nScore 2: Fail\nScore 3: Fail\nScore 4: Fail\nScore 5: Fail\nAverage score: 2.44\nAverage Grade: Fail\n",
+      "name": "TODO 1: Average for hidden scores",
+      "input": "4.4\n5.5\n6.6\n7.7\n8.8\n",
+      "expectedOutput": "Average score: 6.60",
+      "comparison": "included",
+      "points": 2,
+      "hidden": true,
+      "message": "calcAverage should work for any five scores.",
+      "helpTopic": "todo1",
       "possibleErrors": [
         {
           "type": "expected_missing",
-          "badText": "Fail",
-          "message": "Check that your determineGrade method returns \"Fail\" for scores between 1.0 and 3.0, inclusive."
-        },
-        {
-          "type": "hardcoded_output_hint",
-          "badText": "7.62",
-          "message": "Your output still contains 7.62, the average from a different set of scores. Make sure you are calculating the average from the scores entered for this run rather than printing a fixed value."
+          "message": "Your calcAverage passes the visible tests but not this one. Check that nothing in it is a typed-in number other than the 5."
         }
       ]
     },
     {
-      "name": "All Warning scores",
-      "points": 4,
-      "input": "9.9\n9.4\n9.2\n9.4\n9.9\n",
-      "comparison": "exact",
-      "expectedOutput": "Enter the first score: \nEnter the second score: \nEnter the third score: \nEnter the fourth score: \nEnter the fifth score: \nHere are the grades and the average:\nScore 1: Warning\nScore 2: Warning\nScore 3: Warning\nScore 4: Warning\nScore 5: Warning\nAverage score: 9.56\nAverage Grade: Warning\n",
+      "name": "TODO 2: Mixed grades",
+      "input": "2.2\n4.5\n7.0\n9.5\n6.0\n",
+      "expectedOutput": "Score 1: Fail Score 2: Pass Score 3: Excel Score 4: Warning Score 5: Pass Average grade:",
+      "comparison": "included",
+      "points": 2,
+      "message": "2.2, 4.5, 7.0, 9.5, and 6.0 should grade as Fail, Pass, Excel, Warning, Pass, with an average grade of Pass.",
+      "helpTopic": "todo2",
       "possibleErrors": [
         {
           "type": "expected_missing",
-          "badText": "Warning",
-          "message": "Check that your determineGrade method returns \"Warning\" for any score over 9.0, and that this also applies when checking the average score."
+          "message": "Check that determineGrade returns exactly Warning, Excel, Pass, or Fail, spelled as shown in the README, and that the TODO 2 call block in main is uncommented."
         },
         {
-          "type": "hardcoded_output_hint",
-          "badText": "7.62",
-          "message": "Your output still contains 7.62, the average from a different set of scores. Make sure you are calculating the average from the scores entered for this run rather than printing a fixed value."
+          "type": "runtime_error",
+          "message": "Your program crashed while running. Read the error output below for the line number."
         }
       ]
     },
     {
-      "name": "Boundary values",
-      "points": 4,
+      "name": "TODO 2: Boundary values",
       "input": "3.0\n3.1\n6.0\n6.1\n9.0\n",
-      "comparison": "exact",
-      "expectedOutput": "Enter the first score: \nEnter the second score: \nEnter the third score: \nEnter the fourth score: \nEnter the fifth score: \nHere are the grades and the average:\nScore 1: Fail\nScore 2: Pass\nScore 3: Pass\nScore 4: Excel\nScore 5: Excel\nAverage score: 5.44\nAverage Grade: Pass\n",
+      "expectedOutput": "Score 1: Fail Score 2: Pass Score 3: Pass Score 4: Excel Score 5: Excel Average grade:",
+      "comparison": "included",
+      "points": 3,
+      "message": "3.0, 3.1, 6.0, 6.1, and 9.0 should grade as Fail, Pass, Pass, Excel, Excel.",
+      "helpTopic": "todo2",
       "possibleErrors": [
         {
-          "type": "expected_missing",
-          "message": "Check the boundary values in your conditional logic (3.0, 3.1, 6.0, 6.1, and 9.0) to make sure each one falls into the correct grade range."
+          "type": "hardcoded_output_hint",
+          "badText": "score 1: pass",
+          "message": "3.0 should be Fail. Pass starts above 3.0, so the check is > 3.0, not >= 3.0."
         },
         {
           "type": "hardcoded_output_hint",
-          "badText": "7.62",
-          "message": "Your output still contains 7.62, the average from a different set of scores. Make sure you are calculating the average from the scores entered for this run rather than printing a fixed value."
+          "badText": "score 3: excel",
+          "message": "6.0 should be Pass. Excel starts above 6.0, so the check is > 6.0, not >= 6.0."
+        },
+        {
+          "type": "hardcoded_output_hint",
+          "badText": "score 5: warning",
+          "message": "9.0 should be Excel. Warning is only for scores over 9.0, so the check is > 9.0, not >= 9.0."
+        },
+        {
+          "type": "expected_missing",
+          "message": "Check each boundary in the README: 3.0 is Fail, 6.0 is Pass, 9.0 is Excel."
+        }
+      ]
+    },
+    {
+      "name": "TODO 2: Grades for hidden scores",
+      "input": "1.5\n4.0\n6.5\n9.25\n3.05\n",
+      "expectedOutput": "Score 1: Fail Score 2: Pass Score 3: Excel Score 4: Warning Score 5: Pass Average grade:",
+      "comparison": "included",
+      "points": 2,
+      "hidden": true,
+      "message": "determineGrade should work for any score.",
+      "helpTopic": "todo2",
+      "possibleErrors": [
+        {
+          "type": "expected_missing",
+          "message": "Your determineGrade passes the visible tests but not this one. Check every range in the README's grade table."
+        }
+      ]
+    },
+    {
+      "name": "TODO 3: A score over 9.0",
+      "input": "2.2\n4.5\n7.0\n9.5\n6.0\n",
+      "expectedOutput": "Safety check: Medical review required.",
+      "comparison": "included",
+      "points": 2,
+      "message": "9.5 is over 9.0, so this candidate needs a medical review.",
+      "helpTopic": "todo3",
+      "possibleErrors": [
+        {
+          "type": "hardcoded_output_hint",
+          "badText": "cleared for flight",
+          "message": "Your program cleared a candidate with a 9.5. isDangerous should return true for any score over 9.0."
+        },
+        {
+          "type": "expected_missing",
+          "message": "Check that isDangerous returns true for scores over 9.0, and that the TODO 3 if/else in main is uncommented."
+        }
+      ]
+    },
+    {
+      "name": "TODO 3: 9.0 is not dangerous",
+      "input": "3.0\n3.1\n6.0\n6.1\n9.0\n",
+      "expectedOutput": "Safety check: Cleared for flight.",
+      "comparison": "included",
+      "points": 2,
+      "message": "The highest score is 9.0, which is not over 9.0, so this candidate is cleared.",
+      "helpTopic": "todo3",
+      "possibleErrors": [
+        {
+          "type": "hardcoded_output_hint",
+          "badText": "medical review required",
+          "message": "9.0 isn't dangerous. isDangerous should return true only for scores over 9.0, so the check is > 9.0, not >= 9.0."
+        },
+        {
+          "type": "expected_missing",
+          "message": "Check that isDangerous returns false for 9.0 and below."
+        }
+      ]
+    },
+    {
+      "name": "TODO 3: Hidden scores",
+      "input": "8.0\n8.5\n7.0\n6.0\n9.01\n",
+      "expectedOutput": "Safety check: Medical review required.",
+      "comparison": "included",
+      "points": 2,
+      "hidden": true,
+      "message": "isDangerous should work for any score.",
+      "helpTopic": "todo3",
+      "possibleErrors": [
+        {
+          "type": "expected_missing",
+          "message": "Your isDangerous passes the visible tests but not this one. Check that it returns true for anything over 9.0, even 9.01."
         }
       ]
     }
